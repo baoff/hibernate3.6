@@ -3,14 +3,17 @@
 	"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 
 <hibernate-configuration>
-	<session-factory name="foo">
+	<session-factory>
 		<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
 		<property name="connection.url">jdbc:mysql://localhost:3306/hibernate3_6</property>
 		<property name="connection.driver">com.mysql.jdbc.Driver</property>
 		<property name="connection.username">root</property>
 		<property name="connection.password">baoff</property>
 		<property name="show_sql">true</property>
-		<mapping resource="cn/foot/day01/entity/User.hbm.xml"/>
 		
+		<property name="hbm2ddl.auto">update</property>
+		<!-- 
+		<mapping resource="cn/foot/day01/entity/User.hbm.xml"/>
+		-->
 	</session-factory>
 </hibernate-configuration>
