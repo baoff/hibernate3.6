@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!-- 
+
+  This mapping demonstrates content-based discrimination for the
+  table-per-hierarchy mapping strategy, using a formula
+  discriminator.
+
+-->
+
+<hibernate-mapping package="cn.foot.day02.entity">
+	<class name="User" table="t_user">
+		
+		<id name="id">
+			<generator class="native"/>
+		</id>
+		<property name="name" type="string" column="name"/>
+		<!--addressSet 集合，set集合-->
+		<set name="addressSet" table="t_addressSet">
+			<key column="userId"/>
+			<element type="string" column="address"/>
+		</set>
+		
+		<!--addressList 集合，list集合-->
+		<list name="addressList" table="t_addressList">
+			<key column="userId"/>
+			<list-index column="idx"/>
+			<element type="string" column="address"/>
+		</list>
+		
+		<map name="addressMap" table="t_addressMap">
+			<key column="userId"/>
+			<map-key type="string" column="key_"/>
+			<element type="string" column="address"/>
+			
+		</map>
+		
+	</class>
+
+
+</hibernate-mapping>
