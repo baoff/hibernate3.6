@@ -18,8 +18,13 @@
 			<generator class="native"/>
 		</id>
 		<property name="name" type="string" column="name"/>
-		<!--addressSet 集合，set集合-->
-		<set name="addressSet" table="t_addressSet">
+		
+		<!--addressSet 集合，set集合
+			sort : 内存中排序，使用与无序的集合set、map key的排序
+					natural 使用comparaTo()方法
+			order-by: sql子句
+		-->
+		<set name="addressSet" table="t_addressSet" sort="unsorted">
 			<key column="userId"/>
 			<element type="string" column="address"/>
 		</set>
@@ -31,12 +36,15 @@
 			<element type="string" column="address"/>
 		</list>
 		
+		<!-- map -->
 		<map name="addressMap" table="t_addressMap">
 			<key column="userId"/>
 			<map-key type="string" column="key_"/>
 			<element type="string" column="address"/>
 			
 		</map>
+		
+		<!--  -->
 		
 	</class>
 
