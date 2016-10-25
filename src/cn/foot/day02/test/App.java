@@ -1,6 +1,7 @@
 package cn.foot.day02.test;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -64,4 +65,23 @@ public class App {
 			session.getTransaction().rollback();
 		}
 	}
+	
+	public void test(){
+		
+//		List<Fruit> list = Arrays.asList(new Watermelon(),new Apple());
+//		List<Fruit> slist = new ArrayList<Fruit>();
+//		Collections.addAll(slist,new Watermelon(),new Apple());
+		
+	} 
+	
+	class Fruit {
+		
+	}
+	
+	class Sweet extends Fruit{}
+	
+	class Watermelon extends Sweet{}
+	class Apple extends Sweet{}
+	class Banana extends Fruit{}
+	class Orange extends Fruit{}
 }
