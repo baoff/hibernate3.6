@@ -11,24 +11,17 @@
 
 -->
 
-<hibernate-mapping package="cn.foot.day02.oneToMany.entity">
-	<class name="Department" table="t_department">
+<hibernate-mapping package="cn.foot.day02.manyToMany.entity">
+	<class name="Teacher" table="t_teacher">
 		
 		<id name="id">
 			<generator class="native"/>
 		</id>
 		<property name="name" type="string" column="name"/>
 		
-		<!-- employees set集合 
-			key 关联表的外键
-			class 关联的表
-			inverse 只是设置外键的值.
-			flase: 默认维护关联关系
-			true: 放弃维护关联关系
-		-->
-		<set name="employees" inverse="false">
-			<key column="departmentId"></key>
-			<one-to-many class="Employee"/>
+		<set name="students" table="teacher_student">
+			<key column="teacherId"></key>
+			<many-to-many class="Student" column="studentId"></many-to-many>
 		</set>
 	</class>
 

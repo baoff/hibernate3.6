@@ -41,9 +41,9 @@ public class OneToManyTest {
 			department.setEmployees(employees);
 			employee1.setDepartment(department);
 			employee2.setDepartment(department);
-			session.save(department);
 			session.save(employee1);
 			session.save(employee2);
+			session.save(department);
 			tx.commit();
 		}catch(Exception e){
 			e.printStackTrace();
