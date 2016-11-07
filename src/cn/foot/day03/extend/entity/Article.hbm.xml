@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!-- 
+
+  This mapping demonstrates content-based discrimination for the
+  table-per-hierarchy mapping strategy, using a formula
+  discriminator.
+
+-->
+
+<hibernate-mapping package="cn.foot.day03.extend.entity">
+	<class name="Article" table="t_article" discriminator-value="article">
+		
+		<id name="id">
+			<generator class="native"/>
+		</id>
+		<discriminator column="class_" type="string"></discriminator>
+		<property name="title" type="string"/>
+		<property name="content" type="text" length="10000"/>
+		<property name="posttime" type="java.util.Date"/>
+		
+		<subclass name="Topic" discriminator-value="topic">
+			<property name="type"></property>
+		</subclass>
+		
+		<subclass name="Reply" discriminator-value="reply">
+			<property name="floor"></property>
+		</subclass>
+	</class>
+
+
+</hibernate-mapping>

@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!-- 
+
+  This mapping demonstrates content-based discrimination for the
+  table-per-hierarchy mapping strategy, using a formula
+  discriminator.
+
+-->
+
+<hibernate-mapping package="cn.foot.day03.oneToOne2.entity">
+	<class name="Card" table="t_card2">
+		<!--  -->
+		<id name="id">
+		<!--当使用基于主键的一对一映射时，
+			有外键方的主键生成策略一定要是foreign
+			参数property：生成主键值时所根据的对象  -->
+			<generator class="foreign">
+				<param name="property">person</param>
+			</generator>
+		</id>
+		<property name="number" type="string" column="number"/>
+		<!--  -->
+		<one-to-one name="person" class="Person" constrained="true"></one-to-one>
+	</class>
+
+
+</hibernate-mapping>
