@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!-- 
+
+  This mapping demonstrates content-based discrimination for the
+  table-per-hierarchy mapping strategy, using a formula
+  discriminator.
+  一共有三站表，主表t_article2 会记录子对象中继承的信息会造成信息的冗余
+-->
+
+<hibernate-mapping package="cn.foot.day03.extend2.entity">
+	<class name="Article" table="t_article2">
+		
+		<id name="id">
+			<generator class="native"/>
+		</id>
+		<property name="title" type="string"/>
+		<property name="content" type="text" length="10000"/>
+		<property name="posttime" type="java.util.Date"/>
+		
+		<joined-subclass name="Topic" table="t_topic2">
+			<key column="id"></key>
+			<property name="type"></property>
+		</joined-subclass>
+		
+		<joined-subclass name="Reply" table="t_reply2">
+			<key column="id"></key>
+			<property name="floor"></property>
+		</joined-subclass>
+	</class>
+
+
+</hibernate-mapping>

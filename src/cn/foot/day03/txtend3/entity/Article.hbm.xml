@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!-- 
+
+  This mapping demonstrates content-based discrimination for the
+  table-per-hierarchy mapping strategy, using a formula
+  discriminator.
+  	各自存储各自所有的信息，包括继承的信息
+  	可以使用父对象查询，也可用子对象查询
+-->
+
+<hibernate-mapping package="cn.foot.day03.txtend3.entity">
+
+	<class name="Article" abstract="false" table="t_article3">
+		
+		<id name="id">
+		<!-- 联合继承结构主键必须不能重复 -->
+			<generator class="hilo">
+				<param name="table">hilo_tbl</param>
+				<param name="column">next_value</param>
+				<param name="max_lo">100</param>
+			</generator>
+		</id>
+		<property name="title" type="string"/>
+		<property name="content" type="text" length="10000"/>
+		<property name="posttime" type="java.util.Date"/>
+		
+		<union-subclass name="Topic" table="t_topic3">
+			<property name="type"></property>
+		</union-subclass>
+		
+		<union-subclass name="Reply" table="t_reply3">
+			<property name="floor"></property>
+		</union-subclass>
+	</class>
+
+
+</hibernate-mapping>
