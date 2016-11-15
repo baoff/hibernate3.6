@@ -25,7 +25,10 @@ public class SessionCacheTest {
 		Session session = sessionFactory.openSession();
 		User user = (User) session.get(User.class, 2);
 		System.out.println(user.getName());
+		session.flush();
 		session.refresh(user); // 刷新缓存，重新查询
+		
+		session.evict(user);
 		user = (User) session.get(User.class, 2);
 		System.out.println(user.getName());
 	}
