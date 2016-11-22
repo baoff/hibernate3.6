@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!-- 
+
+  This mapping demonstrates content-based discrimination for the
+  table-per-hierarchy mapping strategy, using a formula
+  discriminator.
+
+-->
+
+<hibernate-mapping package="cn.foot.day03.query.entity">
+	<class name="Department" table="t_department">
+		
+		<id name="id">
+			<generator class="native"/>
+		</id>
+		<property name="name" type="string" column="name"/>
+		
+		<!-- employees set集合 
+			key 关联表的外键
+			class 关联的表
+			inverse 只是设置外键的值.
+			flase: 默认维护关联关系
+			true: 放弃维护关联关系
+			cascade属性：
+				默认none,代表不级联
+				级联是指操作主对象时，对关联的对象也做相同的操作
+				可设为： delete、save-update、all、none
+		-->
+		<!-- <set name="employees" inverse="false">
+			<key column="departmentId"></key>
+			<one-to-many class="Employee"/>
+		</set> -->
+	</class>
+
+
+</hibernate-mapping>

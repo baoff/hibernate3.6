@@ -8,14 +8,47 @@
 		<property name="connection.url">jdbc:mysql://localhost:3306/hibernate3_6</property>
 		<property name="connection.driver">com.mysql.jdbc.Driver</property>
 		<property name="connection.username">root</property>
-		<property name="connection.password">root</property>
+		<property name="connection.password">baoff</property>
 		<property name="show_sql">true</property>
-		
+		<!--  
+			create; 先删除，再创建
+			update;不存在就创建，有但不一样就更新，更新时如果老数据不满足，则无法更新，更新无效
+			create-drop;初始化时创建，sessionFactory 执行close 时删除
+			validate; 验证表结构是否一致，如果不一致，就抛出异常
+		-->
 		<property name="hbm2ddl.auto">update</property>
 		<!-- 连接的事务隔离级别 -->
 		<property name="connection.isolation">2</property>
 		<!-- 
 		<mapping resource="cn/foot/day01/entity/User.hbm.xml"/>
 		-->
+		<!-- C3P0连接池设定-->
+		<!-- 使用c3p0连接池  配置连接池提供的供应商-->
+		<property name="connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider                                                                                                                                                     </property>
+		<!--在连接池中可用的数据库连接的最少数目 -->
+		<property name="c3p0.min_size">5</property>
+		<!--在连接池中所有数据库连接的最大数目  -->
+		<property name="c3p0.max_size">20</property>
+		<!--设定数据库连接的过期时间,以秒为单位,
+		如果连接池中的某个数据库连接处于空闲状态的时间超过了timeout时间,就会从连接池中清除 -->
+		<property name="c3p0.timeout">120</property>
+		 <!--每3000秒检查所有连接池中的空闲连接 以秒为单位-->
+		<property name="c3p0.idle_test_period">3000</property>
+		
+		<!-- 二级缓存默认时不开启的 -->
+		<property name="cacge.provider_class">org.hibernate.cache.HashtableCacheProvider</property>
+		<!-- 指定使用缓存的类 ，也可以在类的映射文件中指定
+			read-only: 只读，要是读出的对象改变了，就会抛出异常
+			read-writer: 读写		
+		-->
+		<class-cache usage="read-only" class="cn.foot.day03.oneToOne2.entity.Card"/>
+		<!--集合缓存  -->
+		<collection-cache usage="read-only" collection=""/>
+		
+		
+		
+		
+		
+		
 	</session-factory>
 </hibernate-configuration>
